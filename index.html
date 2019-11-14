@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <script src="js/scripts.js">
+  <script>
     function computerPlay(){
         randomNumber = Math.random();
         if (randomNumber > (2 / 3)){
@@ -29,6 +29,7 @@
         const win = "you won";
         const lose = "you lose";
         const draw = "you draw";
+        playerSelection = playerSelection.toLowerCase();
         if (playerSelection == computerSelection){
             return draw
         } else if (playerSelection == 'rock'){
@@ -52,6 +53,13 @@
         }
     }
 
+    function game(){
+        let ans = playRound(prompt('Rock, paper, or scissors?'), computerPlay())
+        console.log(ans)
+    }
+
+    game();
+    
   </script>
 </body>
 </html>
