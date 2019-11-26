@@ -13,9 +13,15 @@
 </head>
 
 <body>
+
+    <h1>First to win five rounds, wins the game!</h1>
     <button id = "rock">Rock</button>
     <button id = "paper">Paper</button>
     <button id = "Scissors">Scissors</button>
+
+    <div>
+        <button style = "margin: 15px 0" onclick="location.reload();">Refresh</button>
+    </div>
 
     <div id = "results">
         <p>Player Score: <span id = "playerScore">0</span></p>
@@ -33,13 +39,26 @@
         playerScore++ 
         document.getElementById("history").innerHTML = document.getElementById("history").innerHTML + "<br/>you won";
         document.getElementById("playerScore").textContent = playerScore; 
+        if (playerScore == 5){
+            gameWon();
+            
+        }
     }
 
-    
     function lose() {
         computerScore++
         document.getElementById("history").innerHTML = document.getElementById("history").innerHTML + "<br/>you lose";
         document.getElementById("computerScore").textContent = computerScore; 
+        if (computerScore == 5){
+            gameLost();
+        }
+    }
+
+    function gameWon() {
+        document.getElementsByTagName("h1")[0].innerHTML = "You won the game!"
+    }
+    function gameLost() {
+        document.getElementsByTagName("h1")[0].innerHTML = "You lost the game"
     }
     function draw() {
         document.getElementById("history").innerHTML = document.getElementById("history").innerHTML + "<br/>you draw";
@@ -58,7 +77,9 @@
     }
 
     function playRound(playerSelection, computerSelection){
-        playerSelection = playerSelection.toLowerCase();
+        if (playerScore == 5 || computerScore == 5){
+            return;
+        };
         if (playerSelection == computerSelection){
             draw();
         } else if (playerSelection == 'rock'){
