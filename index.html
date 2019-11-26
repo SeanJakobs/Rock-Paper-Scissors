@@ -13,6 +13,12 @@
 </head>
 
 <body>
+    <button id = "rock">Rock</button>
+    <button id = "paper">Paper</button>
+    <button id = "Scissors">Scissors</button>
+
+
+
   <script>
     const win = "you won";
     const lose = "you lose";
@@ -36,21 +42,31 @@
             return draw
         } else if (playerSelection == 'rock'){
             if (computerSelection == 'paper'){
+                console.log(lose);
                 return lose
+                
             } else {
+                console.log(win);
                 return win
             }
         } else if (playerSelection == 'paper'){
             if (computerSelection == 'rock'){
+                console.log(win);
                 return win
             } else {
+                console.log(lose);
                 return lose
+                
             }
         } else {
             if (computerSelection == 'rock'){
+                console.log(lose);
                 return lose
+                
             } else {
-                return win
+                console.log(win);
+                return win;
+                
             }
         }
     }
@@ -68,6 +84,13 @@
         console.log(playerScore);
 
     }
+
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            playRound(button.id, computerPlay())
+        });
+    });
 
   </script>
 </body>
