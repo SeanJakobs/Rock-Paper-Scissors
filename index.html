@@ -17,14 +17,35 @@
     <button id = "paper">Paper</button>
     <button id = "Scissors">Scissors</button>
 
+    <div id = "results">
+        <p>Player Score: <span id = "playerScore">0</span></p>
+        <p>Computer Score: <span id = "computerScore">0</span></p>
+        <p id = "history"></p>
+    </div>
+
 
 
   <script>
-    const win = "you won";
-    const lose = "you lose";
-    const draw = "you draw";
     let playerScore = 0;
     let computerScore = 0;
+
+    function win() {
+        playerScore++ 
+        document.getElementById("history").innerHTML = document.getElementById("history").innerHTML + "<br/>you won";
+        document.getElementById("playerScore").textContent = playerScore; 
+    }
+
+    
+    function lose() {
+        computerScore++
+        document.getElementById("history").innerHTML = document.getElementById("history").innerHTML + "<br/>you lose";
+        document.getElementById("computerScore").textContent = computerScore; 
+    }
+    function draw() {
+        document.getElementById("history").innerHTML = document.getElementById("history").innerHTML + "<br/>you draw";
+    }
+
+
     function computerPlay(){
         randomNumber = Math.random();
         if (randomNumber > (2 / 3)){
@@ -39,51 +60,28 @@
     function playRound(playerSelection, computerSelection){
         playerSelection = playerSelection.toLowerCase();
         if (playerSelection == computerSelection){
-            return draw
+            draw();
         } else if (playerSelection == 'rock'){
             if (computerSelection == 'paper'){
-                console.log(lose);
-                return lose
-                
+                lose();
             } else {
-                console.log(win);
-                return win
+                win();
             }
         } else if (playerSelection == 'paper'){
             if (computerSelection == 'rock'){
-                console.log(win);
-                return win
+                win();
             } else {
-                console.log(lose);
-                return lose
-                
+                lose();
             }
         } else {
             if (computerSelection == 'rock'){
-                console.log(lose);
-                return lose
-                
+                lose();
             } else {
-                console.log(win);
-                return win;
-                
+                win();
             }
         }
     }
 
-    function game(){
-        let result = playRound(prompt('Rock, paper, or scissors?'), computerPlay())
-        console.log(result);
-
-        if (result == win){
-            playerScore += 1;
-        } else {
-            computerScore =+ 1;
-        }
-
-        console.log(playerScore);
-
-    }
 
     const buttons = document.querySelectorAll('button');
     buttons.forEach((button) => {
@@ -91,6 +89,8 @@
             playRound(button.id, computerPlay())
         });
     });
+
+    const history = document.querySelector('#history');
 
   </script>
 </body>
